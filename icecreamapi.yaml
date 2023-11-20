@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: icecreamapi-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: icecreamapi
+  template:
+    metadata:
+      labels:
+        app: icecreamapi
+    spec:
+      containers:
+        - name: icecreamapi
+          image: batdarg/icecreamapi:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: DB_HOST
+              value: icecream-db
+            - name: DB_NAME
+              value: IceCreamDB
+            - name: DB_SA_PASSWORD
+              value: password@12345#

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: icecream-db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: icecream-db
+  template:
+    metadata:
+      labels:
+        app: icecream-db
+    spec:
+      containers:
+        - name: icecream-db
+          image: mcr.microsoft.com/mssql/server:2019-latest
+          ports:
+            - containerPort: 1433
+          env:
+            - name: SA_PASSWORD
+              value: "password@12345#"
+            - name: ACCEPT_EULA
+              value: "Y"

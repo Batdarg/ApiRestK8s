@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-agalvan-ingress
+spec:
+  rules:
+    - host: api.agalvan.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /users
+            backend:
+              service:
+                name: icecreamapi-service
+                port:
+                  number: 80
